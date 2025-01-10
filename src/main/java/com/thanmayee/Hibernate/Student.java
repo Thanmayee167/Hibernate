@@ -1,5 +1,9 @@
 package com.thanmayee.Hibernate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Student {
 
 	public int getStudentId() {
@@ -26,6 +30,7 @@ public class Student {
 		this.age = age;
 	}
 
+	@Id
 	private int studentId;
 	private String name;
 	private int age;
