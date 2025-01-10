@@ -13,9 +13,6 @@ public class App {
 	public static void main(String[] args) {
 
 		Student student = new Student();
-		student.setStudentId(2);
-		student.setName("Kiran");
-		student.setAge(30);
 
 		Configuration con = new Configuration().configure().addAnnotatedClass(Student.class);
 
@@ -25,8 +22,10 @@ public class App {
 
 		Transaction tx = session.beginTransaction();
 
-		session.persist(student);
+		student = session.get(Student.class, 1);
 
 		tx.commit();
+
+		System.out.print(student);
 	}
 }
