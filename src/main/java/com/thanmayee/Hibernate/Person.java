@@ -1,8 +1,11 @@
 package com.thanmayee.Hibernate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Person {
@@ -11,8 +14,8 @@ public class Person {
 	private String name;
 	private int age;
 
-	@OneToOne
-	private Laptop laptop;
+	@OneToMany
+	private List<Laptop> laptops = new ArrayList<Laptop>();
 
 	public int getSno() {
 		return sno;
@@ -38,17 +41,17 @@ public class Person {
 		this.age = age;
 	}
 
-	public Laptop getLaptop() {
-		return laptop;
+	public List<Laptop> getLaptops() {
+		return laptops;
 	}
 
-	public void setLaptop(Laptop laptop) {
-		this.laptop = laptop;
+	public void setLaptops(List<Laptop> laptops) {
+		this.laptops = laptops;
 	}
 
 	@Override
 	public String toString() {
-		return "Person [sno=" + sno + ", name=" + name + ", age=" + age + ", laptop=" + laptop + "]";
+		return "Person [sno=" + sno + ", name=" + name + ", age=" + age + ", laptops=" + laptops + "]";
 	}
 
 }

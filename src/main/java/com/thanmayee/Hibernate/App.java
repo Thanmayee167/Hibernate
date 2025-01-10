@@ -1,5 +1,7 @@
 package com.thanmayee.Hibernate;
 
+import java.util.Collections;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -16,7 +18,7 @@ public class App {
 		person.setSno(1);
 		person.setName("Sai");
 		person.setAge(23);
-		person.setLaptop(laptop);
+		person.setLaptops(Collections.singletonList(laptop));
 
 		Configuration con = new Configuration().configure().addAnnotatedClass(Person.class)
 				.addAnnotatedClass(Laptop.class);
