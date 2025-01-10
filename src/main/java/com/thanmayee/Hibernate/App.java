@@ -13,9 +13,9 @@ public class App {
 	public static void main(String[] args) {
 
 		Student student = new Student();
-		student.setStudentId(1);
-		student.setName("Sai");
-		student.setAge(23);
+		student.setStudentId(2);
+		student.setName("Kiran");
+		student.setAge(30);
 
 		Configuration con = new Configuration().configure().addAnnotatedClass(Student.class);
 
