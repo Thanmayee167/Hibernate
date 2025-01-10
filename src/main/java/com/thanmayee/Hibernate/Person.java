@@ -14,7 +14,7 @@ public class Person {
 	private String name;
 	private int age;
 
-	@ManyToMany
+	@ManyToMany(mappedBy = "persons")
 	private List<Laptop> laptops = new ArrayList<Laptop>();
 
 	public int getSno() {
