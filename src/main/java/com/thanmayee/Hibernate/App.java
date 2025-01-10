@@ -5,14 +5,18 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-/**
- * Hello world!
- *
- */
 public class App {
 	public static void main(String[] args) {
 
+		StudentName studentName = new StudentName();
+		studentName.setSname("Bukkittu");
+		studentName.setFname("Sai");
+		studentName.setLname("Thanmayee");
+
 		Student student = new Student();
+		student.setStudentId(1);
+		student.setName(studentName);
+		student.setAge(23);
 
 		Configuration con = new Configuration().configure().addAnnotatedClass(Student.class);
 
@@ -22,7 +26,7 @@ public class App {
 
 		Transaction tx = session.beginTransaction();
 
-		student = session.get(Student.class, 1);
+		session.persist(student);
 
 		tx.commit();
 

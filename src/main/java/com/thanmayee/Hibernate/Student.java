@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 public class Student {
 	@Id
 	private int studentId;
-	private String name;
+	private StudentName name;
 	private int age;
 
 	public int getStudentId() {
@@ -18,11 +18,11 @@ public class Student {
 		this.studentId = studentId;
 	}
 
-	public String getName() {
+	public StudentName getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(StudentName name) {
 		this.name = name;
 	}
 
