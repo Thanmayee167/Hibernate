@@ -8,17 +8,18 @@ import org.hibernate.cfg.Configuration;
 public class App {
 	public static void main(String[] args) {
 
-		StudentName studentName = new StudentName();
-		studentName.setSname("Bukkittu");
-		studentName.setFname("Sai");
-		studentName.setLname("Thanmayee");
+		Laptop laptop = new Laptop();
+		laptop.setLno(1);
+		laptop.setName("Dell");
 
-		Student student = new Student();
-		student.setStudentId(1);
-		student.setName(studentName);
-		student.setAge(23);
+		Person person = new Person();
+		person.setSno(1);
+		person.setName("Sai");
+		person.setAge(23);
+		person.setLaptop(laptop);
 
-		Configuration con = new Configuration().configure().addAnnotatedClass(Student.class);
+		Configuration con = new Configuration().configure().addAnnotatedClass(Person.class)
+				.addAnnotatedClass(Laptop.class);
 
 		SessionFactory sf = con.buildSessionFactory();
 
@@ -26,10 +27,13 @@ public class App {
 
 		Transaction tx = session.beginTransaction();
 
-		session.persist(student);
+		session.persist(laptop);
+
+		session.persist(person);
 
 		tx.commit();
 
-		System.out.print(student);
+		System.out.print(person);
+		System.out.print(laptop);
 	}
 }
