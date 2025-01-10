@@ -19,7 +19,7 @@ public class App {
 		person.setName("Sai");
 		person.setAge(23);
 		person.setLaptops(Collections.singletonList(laptop));
-		laptop.setPerson(person);
+		laptop.setPersons(Collections.singletonList(person));
 
 		Configuration con = new Configuration().configure().addAnnotatedClass(Person.class)
 				.addAnnotatedClass(Laptop.class);

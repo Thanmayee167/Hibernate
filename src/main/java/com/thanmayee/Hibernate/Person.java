@@ -5,7 +5,7 @@ import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Person {
@@ -14,7 +14,7 @@ public class Person {
 	private String name;
 	private int age;
 
-	@OneToMany(mappedBy = "person")
+	@ManyToMany
 	private List<Laptop> laptops = new ArrayList<Laptop>();
 
 	public int getSno() {

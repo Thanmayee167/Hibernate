@@ -1,16 +1,19 @@
 package com.thanmayee.Hibernate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Laptop {
 	@Id
 	private int lno;
 	private String name;
-	@ManyToOne
-	private Person person;
+	@ManyToMany
+	private List<Person> persons = new ArrayList<Person>();
 
 	public int getLno() {
 		return lno;
@@ -28,12 +31,12 @@ public class Laptop {
 		this.name = name;
 	}
 
-	public Person getPerson() {
-		return person;
+	public List<Person> getPersons() {
+		return persons;
 	}
 
-	public void setPerson(Person person) {
-		this.person = person;
+	public void setPersons(List<Person> persons) {
+		this.persons = persons;
 	}
 
 	@Override
