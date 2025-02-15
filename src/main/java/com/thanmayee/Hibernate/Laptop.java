@@ -3,11 +3,17 @@ package com.thanmayee.Hibernate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import jakarta.persistence.Cacheable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 
 @Entity
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Laptop {
 	@Id
 	private int lno;
@@ -45,4 +51,3 @@ public class Laptop {
 	}
 
 }
-//Example of first level caching in Hibernate caching.png

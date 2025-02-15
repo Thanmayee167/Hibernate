@@ -14,21 +14,29 @@ public class App {
 
 		SessionFactory sf = con.buildSessionFactory();
 
-		Session session = sf.openSession();
+		Session session1 = sf.openSession();
 
-		session.beginTransaction();
+		session1.beginTransaction();
 
-		person = session.get(Person.class, 1);
-
-		System.out.println(person);
-		System.out.println(person.getLaptops());
-
-		person = session.get(Person.class, 1);
+		person = session1.get(Person.class, 1);
 
 		System.out.println(person);
-		System.out.println(person.getLaptops());
+		// System.out.println(person.getLaptops());
 
-		session.getTransaction().commit();
-		session.close();
+		session1.getTransaction().commit();
+		session1.close();
+
+		Session session2 = sf.openSession();
+
+		session2.beginTransaction();
+
+		person = session2.get(Person.class, 1);
+
+		System.out.println(person);
+		// System.out.println(person.getLaptops());
+
+		session2.getTransaction().commit();
+		session2.close();
+
 	}
 }
