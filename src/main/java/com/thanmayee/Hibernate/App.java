@@ -1,25 +1,13 @@
 package com.thanmayee.Hibernate;
 
-import java.util.Collections;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 public class App {
 	public static void main(String[] args) {
 
-		Laptop laptop = new Laptop();
-		laptop.setLno(1);
-		laptop.setName("Dell");
-
-		Person person = new Person();
-		person.setSno(1);
-		person.setName("Sai");
-		person.setAge(23);
-		person.setLaptops(Collections.singletonList(laptop));
-		laptop.setPersons(Collections.singletonList(person));
+		Person person;
 
 		Configuration con = new Configuration().configure().addAnnotatedClass(Person.class)
 				.addAnnotatedClass(Laptop.class);
@@ -28,15 +16,19 @@ public class App {
 
 		Session session = sf.openSession();
 
-		Transaction tx = session.beginTransaction();
+		session.beginTransaction();
 
-		session.persist(laptop);
+		person = session.get(Person.class, 1);
 
-		session.persist(person);
+		System.out.println(person);
+		System.out.println(person.getLaptops());
 
-		tx.commit();
+		person = session.get(Person.class, 1);
 
-		System.out.print(person);
-		System.out.print(laptop);
+		System.out.println(person);
+		System.out.println(person.getLaptops());
+
+		session.getTransaction().commit();
+		session.close();
 	}
 }

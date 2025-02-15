@@ -45,3 +45,4 @@ public class Laptop {
 	}
 
 }
+//Example of first level caching in Hibernate caching.png

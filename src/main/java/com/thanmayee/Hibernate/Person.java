@@ -52,7 +52,7 @@ public class Person {
 
 	@Override
 	public String toString() {
-		return "Person [sno=" + sno + ", name=" + name + ", age=" + age + ", laptops=" + laptops + "]";
+		return "Person [sno=" + sno + ", name=" + name + ", age=" + age + "]";
 	}
 
 }
