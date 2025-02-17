@@ -3,6 +3,7 @@ package com.thanmayee.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 public class App {
 	public static void main(String[] args) {
@@ -18,8 +19,9 @@ public class App {
 
 		session1.beginTransaction();
 
-		person = session1.get(Person.class, 1);
-
+		Query q1 = session1.createQuery("from Person where sno=1");
+		q1.setCacheable(true);
+		person = (Person) q1.uniqueResult();
 		System.out.println(person);
 		// System.out.println(person.getLaptops());
 
@@ -30,8 +32,9 @@ public class App {
 
 		session2.beginTransaction();
 
-		person = session2.get(Person.class, 1);
-
+		Query q2 = session2.createQuery("from Person where sno=1");
+		q2.setCacheable(true);
+		person = (Person) q2.uniqueResult();
 		System.out.println(person);
 		// System.out.println(person.getLaptops());
 
