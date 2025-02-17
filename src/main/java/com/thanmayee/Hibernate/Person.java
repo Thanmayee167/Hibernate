@@ -14,7 +14,7 @@ import jakarta.persistence.ManyToMany;
 
 @Entity
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Person {
 	@Id
 	private int sno;

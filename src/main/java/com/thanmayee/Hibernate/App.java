@@ -1,11 +1,8 @@
 package com.thanmayee.Hibernate;
 
-import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.query.NativeQuery;
 
 public class App {
 	public static void main(String[] args) {
@@ -68,14 +65,33 @@ public class App {
 //		}
 
 //		fetches all records from person table
-		NativeQuery<Person> query = session1.createNativeQuery("SELECT * FROM person", Person.class);
-		List<Person> persons = query.list();
+//		NativeQuery<Person> query = session1.createNativeQuery("SELECT * FROM person", Person.class);
+//		List<Person> persons = query.list();
+//
+//		for (Person person : persons) {
+//			System.out.println(person);
+//		}
 
-		for (Person person : persons) {
-			System.out.println(person);
-		}
+		// Example to demonstrate hibernate object states
+		Person person = new Person();
+		person.setSno(13);
+		person.setName("Geetha");
+		person.setAge(59);// Object is in Transient state
+
+		session1.persist(person);
+		person.setAge(55);// Object is in persistent state
 
 		session1.getTransaction().commit();
+
+		session1.detach(person);
+		person.setAge(60);// Object is in Detached state;
+
+		// Reattach before removing
+		session1.beginTransaction();
+		Person managedPerson = session1.merge(person); // Reattach entity
+		session1.remove(managedPerson); // Now remove it
+		session1.getTransaction().commit();
+
 		session1.close();
 	}
 }
