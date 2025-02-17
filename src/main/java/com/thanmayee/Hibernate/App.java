@@ -5,7 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
+import org.hibernate.query.NativeQuery;
 
 public class App {
 	public static void main(String[] args) {
@@ -59,16 +59,23 @@ public class App {
 //		System.out.println("Average marks=" + averageMarks);
 
 //		fetches records that contains age>10
-		int age = 10;
-		Query query = session1.createQuery("Select sno,name,age from Person where age> :age");
-		query.setParameter("age", age);
-		List<Object[]> persons = (List<Object[]>) query.list();
-		for (Object[] person : persons) {
-			System.out.println("Person [sno=" + person[0] + ", name=" + person[1] + ", age=" + person[2] + "]");
+//		int age = 10;
+//		Query query = session1.createQuery("Select sno,name,age from Person where age> :age");
+//		query.setParameter("age", age);
+//		List<Object[]> persons = (List<Object[]>) query.list();
+//		for (Object[] person : persons) {
+//			System.out.println("Person [sno=" + person[0] + ", name=" + person[1] + ", age=" + person[2] + "]");
+//		}
+
+//		fetches all records from person table
+		NativeQuery<Person> query = session1.createNativeQuery("SELECT * FROM person", Person.class);
+		List<Person> persons = query.list();
+
+		for (Person person : persons) {
+			System.out.println(person);
 		}
 
 		session1.getTransaction().commit();
 		session1.close();
-
 	}
 }
